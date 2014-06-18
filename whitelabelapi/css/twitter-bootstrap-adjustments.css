@@ -1,0 +1,682 @@
+/* Utilities */
+html 			{height:100%;}
+.clear-right 	{clear: right;}
+.clear-left  	{clear: left; }
+.clear-both  	{clear: both; }
+.no-clear		{clear:none !important;}
+.text-left   	{text-align: left;}
+.text-right  	{text-align: right;}
+.text-center 	{text-align: center;}
+.nowrap, 
+.nobr 			{white-space: nowrap;}
+.inline-block	{display: inline-block;}
+.block			{display: block}
+.full-width		{width: 100%;}
+.space			{margin: 5px;}
+.h-underline 	{margin-bottom:5px; border: 2px solid #DDD;}
+.no-margin		{margin:0;}
+.gutter-left	{margin-left:5px;}
+.gutter-right	{margin-right:5px;}
+.gutter-top		{margin-top:5px;}
+.gutter-bottom	{margin-bottom:5px;}
+.hideme			{display:none;} /* Theme 2014 fix */
+
+.fade, 
+.semi-transparent {opacity:0.5;}
+
+.confirmedpassword > .middleColumn { margin-left: 0; }
+
+.controls ul { margin: 2px 0 0 0; padding: 0; }
+.controls li { list-style: none; overflow: hidden; }
+.controls li label { margin-top: 3px; }
+.control-group.checkbox, .control-group.radio { padding-left: 0; }
+.radio input[type="radio"], .checkbox input[type="checkbox"] { float: none; margin: 5px 0 0; }
+.controls .optionset input { float: left; margin-right:5px; margin-top:5px; }
+
+hr.half-margin	{margin:6px;}
+
+.DataObjectManager select { width: auto; padding: 0; height: auto; }
+.DataObjectManager .fieldgroupField { float: left; margin: 0 3px; }
+.DataObjectManager .bottom-controls input { margin: 0; }
+.DataObjectManager .bottom-controls label { display: inline; }
+.DataObjectManager .srch_fld { box-shadow: none; -moz-transition: none; border: 0; }
+
+.dropdown-menu li > a:hover,
+.dropdown-menu .active > a,
+.dropdown-menu .active > a:hover {
+  background-color: #0088cc !important; 
+}
+
+.TableListField ul { margin: 0; }
+
+.control-group .help-popover { margin: 3px 8px; display: inline-block; }
+
+/* Plain text for redonly fields */
+.controls span.readonly {
+    color: #555555;
+    font-weight:bold;
+    margin-top:5px; 
+    display:block;   
+}
+
+/* Inline fields within stacked group
+	 For Dates / creditcards etc */
+.control-group.inline-group .controls input {
+   display: inline;
+}
+
+.control-group.inline-group { 
+    display: inline-block; 
+} 
+
+.datetime .date .middleColumn {
+	width: 8em;
+}
+
+/* What was this setup for?? */
+
+.SelectionGroup li input, .right .SelectionGroup li label {
+	display: inline;
+}
+
+.SelectionGroup li .control-group label {
+	float:none;
+	width:auto;
+	display:inline;
+	text-align:left;
+}
+
+.SelectionGroup li .controls {
+	margin-left:0;
+	
+}
+
+.SelectionGroup, .SelectionGroup li.selected div.field {
+	margin:5px;
+}
+
+/* Overide for checkoutpage */
+#PaymentMethod .SelectionGroup {margin-left:-170px;}
+
+#PaymentMethod .SelectionGroup li {display: none;}
+
+#PaymentMethod .SelectionGroup .selected {
+	display: block;
+}
+
+#PaymentMethod .SelectionGroup .selected .controls {
+	margin-left:160px;
+}
+
+#PaymentMethod .SelectionGroup .selected .control-label {
+	float: left;
+	width: 140px;
+	text-align: right;
+}
+
+#PaymentMethod .SelectionGroup li.selected div.field {
+	margin: 5px;
+	margin-top: 16px;
+	margin-bottom: 14px;
+}
+
+.DataObjectManager-popup #PaymentMethod .SelectionGroup li input, 
+.DataObjectManager-popup  #PaymentMethod.right .SelectionGroup li label {
+	display:inline-block;
+}
+
+/* end Overide for checkoutpage */
+
+.form-horizontal .control-group.readonly,
+.form-horizontal .control-group.datetimefield_readonly,
+.form-horizontal .control-group.checkboxfield_readonly {
+	margin-bottom: 0;
+
+}
+
+.hero-unit {padding:16px; margin-bottom:20px;}
+.hero-unit h1 {font-size:30px;}
+.hero-unit dl {margin-top:5px;}
+.hero-unit p {
+	font-size:13px;
+	line-height:15px;
+}
+
+input.input-quantity  {
+	width:18px;
+	height:13px;
+}
+
+.input-prepend .btn, 
+.input-append .btn {
+	height:23px;
+	margin-top: -9px;
+}
+
+.form-horizontal .input-prepend .btn, 
+.form-horizontal .input-append .btn {
+	margin-top: 0px;
+}
+
+.uneditable-input.input-quantity {
+	line-height: 14px;
+	display:inline-block;
+	cursor: default;
+	border:1px solid #CCC;
+}
+
+
+
+.tab {
+	overflow: visible;
+}
+
+.input-append, 
+.input-prepend {
+	white-space: nowrap;
+}
+
+.no-label .control-label {
+	display: none;
+}
+
+.no-label .controls {
+	margin-left: 0;
+}
+
+.no-indent .controls {
+	margin-left:0;
+}
+
+.form-horizontal .no-indent label {
+	float: none;
+	width: auto;
+	padding-top: 0;
+	text-align: left;
+	margin-bottom:0;
+}
+
+.table .collapse td {
+	padding-top:0;
+	padding-bottom:0;
+}
+.table .collapse td div.collapse {
+	margin-top:0px;
+	margin-bottom:0px;
+} 
+.table .collapse td div.in {
+	margin-top:8px;
+	margin-bottom:8px;
+}
+
+/* For packaged Product Dropdown */
+
+#addPackagedProducts select {width:100%;}
+#addPackagedProducts li {float:none;}
+
+td.voucherLink {
+	white-space: nowrap;
+}
+
+.button-actions, .table td.action {
+	text-align:right;
+	white-space: nowrap;
+}
+
+.button-actions, .table td.action .hover-expand {
+	margin: 5px;
+}
+
+.button-actions {
+	float:right;
+}
+
+.button-actions .btn {
+	margin-bottom:4px;
+	margin-left:4px;
+}
+
+
+/*For funnky buttons*/
+.btn.hover-expand {
+	position: relative;
+	box-shadow:none;
+}
+
+.hover-expand .expand {	
+	max-width:14px;
+	overflow: hidden;
+	display:inline-block;
+	-moz-transition: max-width .4s;
+	-ms-transition: max-width .4s;
+	-o-transition: max-width .4s;
+	-webkit-transition: max-width .4s;
+    transition: max-width .4s;
+    position: absolute;
+    right:-1px;
+    top:-1px;
+}
+.hover-expand .expand span {display:none;}
+.hover-expand:hover .expand span {display:inline-block;}
+
+.hover-expand:hover .expand {
+	text-align: right;
+	max-width:100px;
+	
+}
+
+.input-prepend .btn, .input-append .btn {
+	box-shadow: none;
+}
+
+.form-actions {text-align:right;}
+.table th {
+	white-space: nowrap;
+}
+
+/* Fixes for Select 2 to bring it inline with styeling */
+.select2-container.tagField { 
+	   -moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+		-ms-border-radius: 3px;
+		 -o-border-radius: 3px;
+		 	border-radius: 3px;
+}
+
+.select2-container.tagField .select2-choices {
+	   -moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+		-ms-border-radius: 3px;
+		 -o-border-radius: 3px;
+		 	border-radius: 3px;
+}
+
+.select2-container.tagField.select2-dropdown-open .select2-choices {
+	   -moz-border-radius: 3px 3px 0 0;
+	-webkit-border-radius: 3px 3px 0 0;
+		-ms-border-radius: 3px 3px 0 0;
+		 -o-border-radius: 3px 3px 0 0;
+		 	border-radius: 3px 3px 0 0;
+}
+
+.select2-drop {z-index:10000;}
+
+#Form_ModelSearchForm .select2-container:last-of-type {margin-bottom:20px;}
+
+
+.TableListField ul,
+#Checkout .title ul,
+#OrderInformation ul {
+	margin-left: 15px;
+}
+
+#Checkout .title .modal ul {
+	margin-left:0;
+}
+
+tr.orderitem td {
+	border-top: 1px solid gray;
+}
+
+td.extraItemConfig {
+	border-left: 10px solid lightgrey;
+}
+
+.extraItemConfigPart {
+	border-left: 5px solid #E7E7E7;
+	margin-left: -8px;
+	padding-left: 9px;
+	margin-right: 0px;
+}
+
+div.route-full {
+	background-color: #E2ADAD;
+}
+
+.TableListField small,
+#Checkout small,
+#OrderInformation small {
+	font-size: 90%;
+	color:grey;
+	display:block;
+}
+
+.modal input, .modal textarea, .modal select, .modal .uneditable-input { 
+	margin-bottom: 0;
+	margin-top: 0;
+}
+
+.modal li label {
+	display:inline-block;
+}
+
+.TableListField .selectOptions {list-style: none; margin-left:0;}
+.selectOptions li {display:inline-block; margin-right:8px;}
+
+/* Auto tag required fields */
+.field.required label::before {
+	content : '*';
+	color: red;
+}
+
+/*
+Selection Group
+*/
+.bootstrapselectiongroup {overflow: auto;}
+ul.SelectionGroup {margin-bottom:14px;}
+.SelectionGroup>li {display:none}
+.SelectionGroup>li.selected {display:block;}
+.SelectionGroup>li.selected .controls {clear:left;}
+.SelectionGroup>li.selected ul li {display:block;} /*style fix for report page*/
+
+/*
+Selection Group
+*/
+.js-duplicate {float:left; clear:left; margin:0;}
+.js-duplicate-btn {float:left; margin-top: 32px;}
+
+/*
+Hide 'Close' option for alerts
+*/
+.alert.persist .close {display:none;}
+
+
+.list .dataobject-list li .fields-wrap .col li {
+	height: 30px;
+}
+
+
+/*
+Fixes for DataObjectManager popup
+*/
+#facebox .close {
+	background-color: white;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-ms-border-radius: 5px;
+	-o-border-radius: 5px;
+	border-radius: 5px;
+	padding: 5px;
+	position: absolute;
+	right: 10px;
+	top: -15px;
+	opacity: 1;
+}
+
+#facebox .footer {
+	display:none;
+}
+
+.DataObjectManager-popup form {
+	padding-bottom:60px;
+}
+
+.DataObjectManager-popup form .form-actions {
+	position: fixed;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 100%;
+	bottom: 0;
+	margin: 0;
+}
+.journey-section {margin-bottom:20px;}
+.journey-section-controls {display: none;}
+.journey-section:hover .journey-section-controls {display: block;}
+
+.route-section {min-height: 24px; margin-bottom:5px; padding-right:5px; padding-left:5px;} 
+.route-section .label {width: 75px; display: inline-block;}
+.route-section-controls {display: none;}
+.route-section:hover .route-section-controls {display: block;}
+.route-section:hover {background-color: rgba(0,0,0,0.1);}
+
+/*
+Table row colouring from bootstrap 2.2.2
+*/
+
+.table tbody tr.success td {
+  background-color: #dff0d8;
+}
+
+.table tbody tr.error td {
+  background-color: #f2dede;
+}
+
+.table tbody tr.warning td {
+  background-color: #fcf8e3;
+}
+
+.table tbody tr.info td {
+  background-color: #d9edf7;
+}
+
+.table-hover tbody tr.success:hover td {
+  background-color: #d0e9c6;
+}
+
+.table-hover tbody tr.error:hover td {
+  background-color: #ebcccc;
+}
+
+.table-hover tbody tr.warning:hover td {
+  background-color: #faf2cc;
+}
+
+.table-hover tbody tr.info:hover td {
+  background-color: #c4e3f3;
+}
+
+/*
+Fave checkbox
+*/
+
+td.MyFave ul {
+	list-style: none;
+	margin-left: 0;
+}
+
+
+td.MyFave :not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+    clip:rect(0,0,0,0);
+}
+
+td.MyFave :not(:checked) > label {
+    float:right;
+    content: '*';
+    width: 1.6em;
+    height: 1.6em;  
+    line-height:0.8; 
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    color:#ddd;
+    text-shadow:1px 1px #bbb, 2px 2px #666, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+td.MyFave :not(:checked) > label:before {
+    content: '*';
+    font-size: 4em;
+    overflow:hidden;
+}
+
+td.MyFave input:checked ~ label {
+    color: gold;
+    text-shadow:1px 1px #bbb, 2px 2px #666, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+td.MyFave :not(:checked) > label:hover,
+td.MyFave :not(:checked) > label:hover ~ label {
+    color: #fd6;
+    text-shadow:1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+td.MyFave > label:active {
+    position:<div>relative</div>;
+    top:2px;
+    left:2px;
+}
+
+.table td.no-top-border {border-top-width: 0;}
+
+.j6literal .controls {
+	padding-top:5px;
+}
+
+ul.inline li {display: inline-block; padding-right:5px;}
+
+.input-time {
+	width: 40px;
+}
+.input-dropdown {
+	width: 140px;
+}
+
+.field.action .btn {
+	border-width: 1px;
+	padding:4px 10px 4px;
+}
+
+
+/*
+Fixes inline lists
+*/
+ul.journey > li, ol.journey > li {
+display: inline-block;
+padding-right: 5px;
+}
+
+ol.journey li:after {
+	content: ' >'; 
+	padding-left: 3px;
+}
+ol.journey li:last-child:after {
+	content: ''; 
+}
+
+.nav .spacer {
+	border-left:2px solid #fff;
+	height:20px; 
+	margin-top:6px
+}
+
+.nav .action span {
+	background-color: #5195B4;
+	padding: 0 7px;
+	margin-top: 1px;
+	display: block;
+	border-radius: 5px;
+}
+
+.navbar .nav > li > a.action {
+	padding: 3px 3px 5px;
+}
+
+.customer-view-control {
+	background-color: #8cadba;
+	background-color: rgba(255, 255, 255, 0.15);
+	padding: 0px 9px;
+	border-radius: 10px;
+	border: 1px solid #6a848f;
+	border-color: rgba(0, 0, 0, 0.2);
+}
+
+
+
+.AddToCart a {display:block;}
+.TableListField .AddToCart ul  {
+	margin-left: 0; 
+}
+
+.mainContent .AddToCart ul {
+	padding-left: 0;
+}
+
+.matrix td, .matrix th {
+	border: 1px solid #dddddd;
+}
+
+
+.fc-event-time, .fc-event-title {
+    display: block;
+}
+
+input.routeSearch {
+	position: relative;
+	float: left;
+	left: -3px;
+}
+input.routeSearch:checked ~ blockquote {
+	border-color: rgba(0, 100, 200, 0.25);
+
+}
+
+/*
+spinning icons from font awesome
+*/
+.icon-spin {
+	display: inline-block;
+	-moz-animation: spin 2s infinite linear;
+	-o-animation: spin 2s infinite linear;
+	-webkit-animation: spin 2s infinite linear;
+	animation: spin 2s infinite linear;
+}
+
+@-moz-keyframes spin {
+  0% { -moz-transform: rotate(0deg); }
+  100% { -moz-transform: rotate(359deg); }
+}
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(359deg); }
+}
+@-o-keyframes spin {
+  0% { -o-transform: rotate(0deg); }
+  100% { -o-transform: rotate(359deg); }
+}
+@-ms-keyframes spin {
+  0% { -ms-transform: rotate(0deg); }
+  100% { -ms-transform: rotate(359deg); }
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(359deg); }
+}
+
+
+/*
+Fixes for differing media sizes
+*/
+@media all and (max-width: 1200px) {
+	/* For Checkout */
+	#Checkout #LeftOrder, 
+	#Checkout #RightOrder,
+	
+	#Form_RouteSearchForm .span4,
+	#Form_RouteSearchForm .span5,
+	/* For Dashboard */ 
+	.bootstrapcomposite.span5 {
+		float:none;
+		width:auto;
+	}
+}
+
+.modal-open .dropdown-menu {
+  z-index: 10050;
+}
+
+table .btn-group { 
+    white-space: nowrap; // prevent buttons from wrapping when in tight spaces (e.g., the table on the tests page)	
+}
+
+table .btn-group  .btn {
+    float: inherit;
+}
+
+table .btn-group .btn + .btn {
+    margin-left: -2px;
+}
+

@@ -1,0 +1,29 @@
+.ajaxQuantityField { width: 15px; margin-bottom: 0; text-align: center; }
+
+.PageControls { text-align: center; font-weight: bold; border: 1px solid #DDDDDD; background: #F5F5F5; padding: 2px; margin: 5px 0; }
+ul.tabstrip { margin-top: 15px !important; }
+
+
+#Form_ModelSearchForm .control-group { margin: 0; }
+#Form_ModelSearchForm .Actions { background: none; margin: 0; border: 0; padding: 0; }
+
+form { clear: both; }
+
+.field.requiredBeforeBooking label::before {
+content: '*';
+color: blue;
+}
+.field.requiredBeforeBooking input{
+	background-color: #E0E0FF;
+}
+.field.requiredBeforeTravel input{
+	background-color: #E0ECE6;
+}
+.field.requiredBeforeTravel label::before {
+content: '*';
+color: green;
+}
+/* styles for legend on self service */
+span.required{ color: red; }
+span.requiredBeforeBooking{ color: blue; }
+span.requiredBeforeTravel{ color: green; }
