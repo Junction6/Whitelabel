@@ -2,8 +2,8 @@
       include 'inc/utilities.php'; 
         ?>
 <?php 
-    $order = isset($_SESSION["whitelabel.api.order"]) ? $_SESSION["whitelabel.api.order"] : null;
-    if ($order && is_object($order) && $order->Items) :?>
+    $order = getOrderInSession();
+    if ($items = getOrderItemsInSession()) :?>
 <!DOCTYPE html>
 
 <html>
@@ -62,13 +62,13 @@
                                                                 <tbody>
                                                                     <tr>
                                                                         <th>Products</th>
-                                                                        <th>Unit Price</th>
-                                                                        <th>Quantity</th>
-                                                                        <th>Total Price</th>
+                                                                        <th class="centre-alignment">Unit Price</th>
+                                                                        <th class="centre-alignment">Quantity</th>
+                                                                        <th class="centre-alignment">Total Price</th>
                                                                         <th>&nbsp;</th>
                                                                     </tr>
                                                                     <!-- next row display item within the order  -->
-                                                                    <?php $items = $order->Items; $totalPrice=0; $subTotalPrice=0; ?>
+                                                                    <?php $totalPrice=0; $subTotalPrice=0; ?>
                                                                     <?php foreach( $items as $item) :?>
                                                                     <?php if (is_object($item)) :?>
                                                                         <tr id="" class="product_orderitem orderitem orderattribute 
@@ -77,15 +77,18 @@
                                                                                 <?php 
                                                                                     $subItemTitle="";
                                                                                     $variationTitle = ($item->Title) ? "{$item->Title}" : 'Unknown'; 
-                                                                                    $mainItemTitle = $item->Product->Title . " ($variationTitle) " ;
+                                                                                    $mainItemTitle = property_exists($item, 'Product') ? 
+                                                                                                     $item->Product->Title . " ($variationTitle) "  : $variationTitle;
                                                                                     $status = "";
-                                                                                    $mainItemEventTitle = "";
+                                                                                    $itemEventTitle = "";
+                                                                                    $subTitle = "";
+                                                                                    $pickupPointTitle = property_exists($item, 'PickupLocationInfo') && 
+                                                                                                       $item->PickupLocationInfo ? 
+                                                                                                ", Pickup Point: {$item->PickupLocationInfo}" : "";
                                                                                     if (property_exists($item, 'Event') && $event = $item->Event){
                                                                                         $time ="";
                                                                                         $status = $event->ManifestStatus && $event->ManifestStatus != 'Open' ? "$event->ManifestStatus " : "";
-                                                                                        $pickupPoint = property_exists($item, 'PickupLocationInfo') && 
-                                                                                                       $item->PickupLocationInfo ? 
-                                                                                                ", Pickup Point: {$item->PickupLocationInfo}" : "";
+                                                                                        
                                                                                         if ($event->Date){
                                                                                             if (property_exists($event, 'Start') && 
                                                                                                     $event->Start && 
@@ -97,27 +100,36 @@
                                                                                                         date('h:i:s A', strtotime($event->End));
                                                                                             }
                                                                                             $date = date('l jS  F Y', strtotime($event->Date));
-                                                                                            $mainItemEventTitle = "Booking: {$date} {$time}{$pickupPoint}";
+                                                                                            $itemEventTitle = "Booking: {$date} {$time}";
                                                                                         }
                                                                                     }
+                                                                                    elseif ($pickupPointTitle && 
+                                                                                            property_exists($item, 'Event') && !($event = $item->Event)){
+                                                                                        $itemEventTitle = "Booking: <span class='label label-info'>Travel date not set</span>";
+                                                                                    }
+                                                                                    
+                                                                                    
+                                                                                    $subTitle = $itemEventTitle . $pickupPointTitle;
+                                                                                    
                                                                                     $mainItemTitle = strtoupper($status) . $mainItemTitle;
                                                                                     //ok, is this item from the PackageProduct?
                                                                                     //we need to display information about the item in the Products within the PackageProduct
-                                                                                    if (property_exists($item->Product, 'Products') && $pProducts= $item->Product->Products){
+                                                                                    if (property_exists($item, 'Product') && 
+                                                                                        property_exists($item->Product, 'Products') && $pProducts= $item->Product->Products){
                                                                                         include 'inc/subitems.php';
                                                                                     }
                                                                                 ?>
                                                                                 <div>
                                                                                     <small>
-                                                                                        <?php echo $item->Product->Supplier->Name; ?>
+                                                                                        <?php echo property_exists($item, 'Product') ? $item->Product->Supplier->Name : ""; ?>
                                                                                     </small>
                                                                                 </div>
-                                                                                    
-                                                                                <a href="productdetails.php?id=<?php echo $item->Product->ID ?>">
+                                                                                <a href="<?php echo property_exists($item, 'Product') ? 
+                                                                                                    "productdetails.php?id=" . $item->Product->ID : "#" ?>">
                                                                                     <?php echo $mainItemTitle ?>
                                                                                 </a>
                                                                                 <div class="tableSubTitle" id="">
-                                                                                    <small><?php echo $mainItemEventTitle; ?>
+                                                                                    <small><?php echo $subTitle; ?>
                                                                                         <small><?php echo $subItemTitle; ?></small>
                                                                                     </small>
                                                                                 </div>
@@ -126,13 +138,13 @@
                                                                                     </small>
                                                                                 </small>-->
                                                                             </td>
-                                                                            <td class="right unitprice">
+                                                                            <td class="centre-alignment unitprice">
                                                                                 <?php echo number_format($item->UnitPrice,2); ?>
                                                                             </td>
-                                                                            <td class="center quantity">
-                                                                                <?php echo number_format($item->Quantity,2);?>
+                                                                            <td class="centre-alignment quantity">
+                                                                                <?php echo $item->Quantity;?>
                                                                             </td>
-                                                                            <td class="right total" id="">
+                                                                            <td class="centre-alignment total" id="">
                                                                                 <?php $subTotalPrice = $item->Quantity * $item->UnitPrice; 
                                                                                       $totalPrice += $subTotalPrice;
                                                                                       echo number_format($subTotalPrice,2); ?>
@@ -148,7 +160,8 @@
                                                                                             </span>
                                                                                         </span>
                                                                                     </a>-->
-                                                                                    <a class="hover-expand btn ajaxQuantityLink" href="shoppingcart.php?action=deleteitem&id=<?php echo "{$item->OrderItemID}&productid={$item->Product->ID}"; ?>&BackURL=checkout.php" data-tooltip="" title="<?php echo $mainItemTitle; ?>">
+                                                                                    <a class="hover-expand btn ajaxQuantityLink" href="shoppingcart.php?action=deleteitem&id=<?php echo property_exists($item, 'Product') ? 
+                                                                                                    "{$item->OrderItemID}&productid={$item->Product->ID}" : "{$item->OrderItemID}";?>&BackURL=checkout.php" data-tooltip="" title="<?php echo $mainItemTitle; ?>">
                                                                                         <i class="icon-remove icon-white"></i>
                                                                                         <span class="expand btn btn-danger">
                                                                                                 <i class="icon-remove icon-white"></i>
@@ -165,21 +178,21 @@
                                                                         <th>Sales Tax:</th>
                                                                         <td>&nbsp;</td>
                                                                         <th>&nbsp;</th>
-                                                                        <th class="monetary-cell"><?php echo $order->SalesTax;?></th>	
+                                                                        <th class="monetary-cell centre-alignment"><?php echo $order->SalesTax;?></th>	
                                                                         <td>&nbsp;</td>
                                                                     </tr>
                                                                     <tr class="totals">
                                                                         <th>Total (exc. Sales Tax):</th>
                                                                         <td>&nbsp;</td>
                                                                         <th>&nbsp;</th>
-                                                                        <th class="monetary-cell"><?php echo number_format($totalPrice,2); ?></th>	
+                                                                        <th class="monetary-cell centre-alignment"><?php echo number_format($totalPrice,2); ?></th>	
                                                                         <td>&nbsp;</td>
                                                                     </tr>
                                                                     <tr class="totals">
                                                                         <th>Total:</th>
                                                                         <td>&nbsp;</td>
                                                                         <td></td>
-                                                                        <th class="monetary-cell"><?php echo number_format($totalPrice,2); ?></th>
+                                                                        <th class="monetary-cell centre-alignment"><?php echo number_format($totalPrice,2); ?></th>
                                                                         <td></td>
                                                                     </tr>	
                                                                 </tbody>
@@ -432,8 +445,5 @@
     </body>
 </html>
 <?php else :?>
- <?php $host  = $_SERVER['HTTP_HOST'];
-        $uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
-        header("Location: http://$host$uri/index.php");
-?>
+ <?php RedirectTo('index.php'); ?>
 <?php endif;

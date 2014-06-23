@@ -7,20 +7,16 @@
         <?php
                  
                 $id = isset($_REQUEST['id']) ? $_REQUEST['id'] : 0;
+                $oProduct = null;
+                
                 if ($id){
-                    
                     $url = sprintf(J6_BASE_URL."products"."?token=".J6_TOKEN.
                                    "&ProductID=%s", urlencode($id));
                     $product = cCurl($url);
                     
-                    $oProduct = null;
-                    
                     if ($product){
                         $product = json_decode($product);
                         $oProduct = property_exists($product, 'response') ? $product->response : null;
-                        if ($oProduct == null){
-                           /* unable to get the product */
-                        }
                     }
                 }
         ?>
@@ -82,10 +78,10 @@
                                 </div>
                             <?php endif; ?>
                             <?php if ($oProduct->VoucherContent) :?>
-                                <?php 
-                                $voucherContent = htmlspecialchars_decode($oProduct->VoucherContent);
-                                echo "<h2>Voucher Content</h2>{$voucherContent}";
-                                ?>
+                                <div>
+                                    <h2>Voucher Content</h2>
+                                    <?php htmlspecialchars_decode($oProduct->VoucherContent) ?>
+                                </div>
                             <?php endif; ?>
                         <?php endif;?>
                     </div>

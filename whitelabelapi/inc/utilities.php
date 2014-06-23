@@ -6,7 +6,7 @@
             if ($a->Price == $b->Price) {
                 return 0;
             }
-            return ($a->Price > $b->Price) ? +1 : -1;
+            return ($a->Price < $b->Price) ? +1 : -1;
         }
         return null;
     }
@@ -40,6 +40,19 @@
                         return;
                    }
                }
+               if (property_exists($product, 'ExtraProducts')){
+                   $extraProducts = $product->ExtraProducts;
+                   foreach ($extraProducts as $extraProduct){
+                       if ($item = $extraProduct->Item){
+                           if ($item->ID == $variationId){
+                               $oProd = $product;
+                               $oProd->Variation = $item;
+                               return;
+                           }
+                       }
+                   }
+               }
+               
                
            }
         });
@@ -48,10 +61,18 @@
    function FindOrderItem($items,$id){
        $oItem = null;
        array_walk($items, function($item) use($id, &$oItem){
-            if ($item->OrderItemID == $id){
+            if ($item && is_object($item) && $item->OrderItemID == $id){
                 $oItem = $item; 
                 return;
             }
         });
         return $oItem;
    }
+   
+   function RedirectTo($url = null){
+        $host  = $_SERVER['HTTP_HOST'];
+        $uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+        $url = ($url) ? "/$url" : "";
+        header("Location: http://$host$uri$url");
+   }
+   

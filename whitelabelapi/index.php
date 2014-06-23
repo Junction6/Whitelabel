@@ -44,7 +44,6 @@
                                         if ($oProducts && !is_array($oProducts)){ $oProducts = array(0=>$oProducts);}
                                 
                                         }
-//                                    echo $url;
                             ?>
                             <?php if ($oProducts) :?>
                             <fieldset>
@@ -107,7 +106,7 @@
                                 </div>    
                             </fieldset>
                             <?php //place products in the session
-                                $_SESSION["whitelabel.api.products"] = $oProducts;
+                                saveProductsToSession($oProducts);
                             ?>
                             <?php else :?>
                                 <!-- unable to retrieve products -->

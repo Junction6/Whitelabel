@@ -2,8 +2,7 @@
        include 'inc/config.php';
        include 'inc/utilities.php';
       
-        $oOrder =    isset($_SESSION["whitelabel.api.order"]) && is_object($_SESSION["whitelabel.api.order"])
-                    ? $_SESSION["whitelabel.api.order"] : null;
+        $oOrder = getOrderInSession();
        
         if ($oOrder && sizeof($_POST) > 0){
             
@@ -54,10 +53,10 @@
                                     if ($oCompleteOrder){
                                     /* successfully completed an order
                                      */
-                                        unset($_SESSION["whitelabel.api.order"]);
                                         $_SESSION['alert-message'] = "The Order was successfully checked out.";
                                         $_SESSION['alert-type'] = 'success';
                                         $redirectBackUrl = "";
+                                        clearOrderInSession();
                                     }
                                 }
                             }
@@ -66,7 +65,6 @@
                 }
             } 
         }
-        $host  = $_SERVER['HTTP_HOST'];
-        $uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
-        $redirectBackUrl = ($redirectBackUrl) ? "/$redirectBackUrl" : "";
-        header("Location: http://$host$uri$redirectBackUrl");
+        
+        RedirectTo($redirectBackUrl);
+        

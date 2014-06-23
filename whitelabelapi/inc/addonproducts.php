@@ -1,4 +1,4 @@
-<?php if (property_exists($productSelected, 'Products') && 
+<?php if (property_exists($productSelected, 'Addons') && 
           is_array($productSelected->Addons) && count($productSelected->Addons) > 0) :?>
     <div id="" class="field form-group  bootstrapcomposite  nolabel ">
         <div class="">

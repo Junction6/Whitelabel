@@ -19,35 +19,16 @@
                     </div>
                 </div>
                 <select style="display: none;" class=" required input-medium gutter-top" 
-                                name="SystemPickupLocationID">
+                                name="ProductPickupLocationID[<?php echo $productSelected->ID ?>]">
                     <?php $selected = "";
                       
-                        foreach ($ProductPickupLocations as $ProductPickupLocation => $PickupPointLocation) :?>
-
-                                                        <?php
-                                                            /*
-                                                             * 0] => stdClass Object ( [DefaultPickup] => 0
-                                                             *  [PickupPoint] => stdClass Object ( 
-                                                             * [ClassName] => PickupPoint 
-                                                             * [Created] => 2013-11-08 19:22:33 [LastEdited] => 2013-11-08 19:22:33 
-                                                             * [Title] => Narita T2 8pm and drop back to Tokyo Prince Htl [isAHub] => 0 [isInRoute] => 0 [ClientID] => 4241
-                                                             */
-                                                                $PickupPoint = $PickupPointLocation->PickupPoint;
-                                                                print_r($PickupPointLocation);
-                                                                print_r($PickupPoint);
-                                                                /* pickuppoint
-                                                                 * stdClass Object (     [ClassName] => PickupPoint   
-                                                                 *   [Created] => 2013-11-08 19:22:33    
-                                                                 *  [LastEdited] => 2013-11-08 19:22:33    
-                                                                 *  [Title] => Narita T2 8pm and drop back to Tokyo Prince Htl 
-                                                                 *     [isAHub] => 0     [isInRoute] => 0   
-                                                                 *   [ClientID] => 4241     [PrimaryPickup] => 0     [Default] => 0     [AvailableToWhitelabel] => 1     [Surcharge] => 0.00     [LocationID] => 1356     [ID] => 1357     [RecordClassName] => PickupPoint )
-                                                                 */
-
-                                                            ?>
+                        foreach ($ProductPickupLocations as $ProductPickupLocation => $PickupPointLocation ) :?>
+                            <?php
+                                    $PickupPoint = $PickupPointLocation->PickupPoint;
+                            ?>
                         <?php if ($PickupPointLocation->DefaultPickup){ $selected ="selected='selected'";} ?>
-                        <?php if ($PickupPoint->AvailableToWhitelabel) :?>
-                            <option <?php echo $selected; $selected="";?> value="<?php echo $PickupPoint->ID ?>">
+                        <?php if ($PickupPoint->AvailableToWhitelabel || true) :?>
+                            <option <?php echo $selected; $selected="";?> value="<?php echo $PickupPointLocation->ID ?>">
                                 <?php echo $PickupPoint->Title; ?>
                             </option>
                         <?php endif;?>

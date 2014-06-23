@@ -75,7 +75,8 @@
                              <tbody>
                                 <?php if ($productSelected->Variations && count($productSelected->Variations) > 0) :?>
                                     <?php  usort($productSelected->Variations, "cmp_obj"); ?>
-                                    <?php foreach ($productSelected->Variations as $variation) :?>
+                                    <?php $vQuantity = 1;
+                                        foreach ($productSelected->Variations as $variation) :?>
                                         <tr>
                                             <td><?php echo $variation->InternalItemID; ?></td>
                                             <td><?php  $price = number_format($variation->Price,2);
@@ -85,7 +86,7 @@
                                                     <button class="btn btn-primary input-group-addon">-</button>
                                                     <input class="text input-quantity js-quantity" 
                                                            name="<?php echo "Variation[{$variation->ID}][Quantity]"; ?>" 
-                                                           value="0" type="text">
+                                                           value="<?php echo $vQuantity; $vQuantity=0?>" type="text">
                                                     <button class="btn btn-primary input-group-addon">+</button>
                                                 </div>
                                             </td>
@@ -127,8 +128,6 @@
     </body>
 </html>
 <?php else :?>
- <?php $host  = $_SERVER['HTTP_HOST'];
-        $uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
-        header("Location: http://$host$uri/index.php");
+ <?php RedirectTo('index.php');
 ?>
 <?php endif;

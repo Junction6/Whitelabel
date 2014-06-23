@@ -1,19 +1,23 @@
 <?php
     
-    $oOrder =    isset($_SESSION["whitelabel.api.order"]) && is_object($_SESSION["whitelabel.api.order"])
-                    ? $_SESSION["whitelabel.api.order"] : null;
+    $oOrder = getOrderInSession();
     
-    if ($oOrder && property_exists($oOrder,'Items') && $oOrder->Items ) :?>
+    if ($items = getOrderItemsInSession()) :?>
     <h3>My Order - <?php echo $oOrder->Status ?></h3>
-    <?php $items = $oOrder->Items; $subTotalPrice =0; $totalPrice=0; ?>
+    <?php $subTotalPrice =0; $totalPrice=0; ?>
     <table class="table table-condensed table-striped">
         <tbody>
             <?php foreach( $items as $item) :?> 
             <?php if (is_object($item)) :?>
             
             <tr class="product_orderitem orderitem orderattribute">
-                <td class="title"><?php $title = ($item->Title) ? $item->Title : 'unknown'; 
-                echo $item->Product->Title . " - " . $title; ?> </td>
+                <td class="title">
+                    <?php 
+                        $title = ($item->Title) ? $item->Title : 'unknown'; 
+                        $productTitle = property_exists($item, 'Product') ?  $item->Product->Title . " - " . $title : $title;
+                        echo $productTitle; 
+                    ?> 
+                </td>
                 <td class="price">
                     <?php $subTotalPrice += $item->Quantity * $item->UnitPrice;
                           $totalPrice = $subTotalPrice;
@@ -21,16 +25,31 @@
                                     $item->Quantity,number_format($item->UnitPrice,2)); 
                     ?>
                 </td>
+                <td>
+                    <a class="hover-expand btn ajaxQuantityLink" 
+                       href="shoppingcart.php?action=deleteitem&id=<?php echo property_exists($item, 'Product') ? 
+                                      "{$item->OrderItemID}&productid={$item->Product->ID}" 
+                                      : "{$item->OrderItemID}";?>" 
+                        data-tooltip="" title="<?php echo $productTitle; ?>">
+                        <i class="icon-remove icon-white"></i>
+                        <span class="expand btn btn-danger">
+                                <i class="icon-remove icon-white"></i>
+                                <span> Delete</span>
+                        </span>
+                    </a>
+                </td>
             </tr>
             <?php endif;?>
             <?php endforeach; ?>
             <tr>
                 <td class="subtotal">Subtotal:</td>
                 <td><strong id="Cart_Order_SubTotal"><?php echo number_format($subTotalPrice, 2); ?></strong></td>
+                <td></td>
             </tr>
             <tr>
-            <td class="total">Total:</td>
+            <td class="total" >Total:</td>
             <td><strong id="Cart_Order_Total"><?php echo number_format($totalPrice, 2); ?></strong></td>
+            <td></td>
             </tr>
         </tbody>
     </table>
